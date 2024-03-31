@@ -1,0 +1,915 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F100841D-3287-458C-B5E5-EED9184B2A22}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>RimuGD</RootNamespace>
+    <AssemblyName>SANABI Việt Hóa</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>images.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommunityToolkit.Mvvm, Version=8.2.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommunityToolkit.Mvvm.8.2.2\lib\netstandard2.0\CommunityToolkit.Mvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="Costura, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Costura.Fody.5.7.0\lib\netstandard1.0\Costura.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedBass, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.3.1.1\lib\net45\ManagedBass.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.0-preview.1.24080.9\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Console, Version=4.0.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.1\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.9.0.0-preview.1.24080.9\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.9.0.0-preview.1.24081.2\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Extensions.4.3.1\lib\net462\System.Runtime.Extensions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.4.3.0\lib\net463\System.Runtime.InteropServices.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.1\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ImageButton.cs" />
+    <None Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </None>
+    <Compile Include="Service\DialogService.cs" />
+    <Page Include="ImageButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <None Include="MainWindow_off.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow_off.xaml.cs">
+      <DependentUpon>MainWindow_off.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Assets\Fonts\UVN Ai Cap Nang.TTF" />
+    <Resource Include="Assets\Fonts\UVN Bach Dang.TTF" />
+    <Resource Include="Assets\Fonts\UVN Chim Bien.TTF" />
+    <Resource Include="Assets\Fonts\UVN Mang Tre.TTF" />
+    <Resource Include="Assets\Fonts\UVN Thay Giao Nang.TTF" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AowVN.MVVM\AowVN.MVVM.csproj">
+      <Project>{d31aefcc-8720-46fb-9b66-d7b1c3b459c7}</Project>
+      <Name>AowVN.MVVM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\images.ico" />
+    <Resource Include="Resources\images.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\BGM.wav" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0010_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0011_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0012_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0013_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0014_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0015_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0016_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0017_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0018_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0019_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_001_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0020_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0021_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0022_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0023_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0024_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0025_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0026_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0027_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0028_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0029_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_002_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0030_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0031_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0032_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0033_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0034_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0035_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0036_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0037_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0038_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0039_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_003_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0040_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0041_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0042_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0043_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0044_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0045_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0046_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0047_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0048_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0049_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_004_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0050_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0051_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0052_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0053_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0054_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0055_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0056_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0057_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0058_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0059_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_005_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0060_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0061_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0062_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0063_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0064_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0065_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0066_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0067_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0068_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0069_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_006_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0070_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0071_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0072_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0073_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0074_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0075_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0076_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0077_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0078_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0079_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_007_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0080_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0081_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0082_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0083_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0084_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0085_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0086_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0087_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0088_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0089_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_008_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_0090_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch1_frames\caipatch1_009_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0010_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0011_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0012_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0013_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0014_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0015_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0016_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0017_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0018_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0019_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_001_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0020_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0021_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0022_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0023_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0024_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0025_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0026_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0027_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0028_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0029_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_002_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0030_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0031_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0032_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0033_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0034_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0035_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0036_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0037_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0038_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0039_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_003_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0040_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0041_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0042_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0043_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0044_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0045_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0046_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0047_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0048_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0049_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_004_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0050_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0051_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0052_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0053_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0054_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0055_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0056_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0057_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0058_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0059_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_005_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0060_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0061_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0062_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0063_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0064_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0065_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0066_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0067_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0068_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0069_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_006_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0070_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0071_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0072_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0073_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0074_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0075_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0076_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0077_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0078_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0079_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_007_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0080_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0081_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0082_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0083_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0084_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0085_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0086_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0087_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0088_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0089_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_008_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_0090_optimized.png" />
+    <Resource Include="Assets\Image\CaiPatch2_frames\caipatch2_009_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0010_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0011_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0012_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0013_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0014_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0015_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0016_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0017_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0018_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0019_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_001_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0020_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0021_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0022_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0023_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0024_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0025_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0026_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0027_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0028_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0029_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_002_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0030_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0031_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0032_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0033_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0034_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0035_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0036_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0037_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0038_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0039_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_003_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0040_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0041_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0042_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0043_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0044_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0045_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0046_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0047_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0048_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0049_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_004_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0050_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0051_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0052_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0053_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0054_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0055_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0056_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0057_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0058_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0059_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_005_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0060_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0061_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0062_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0063_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0064_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0065_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0066_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0067_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0068_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0069_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_006_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0070_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0071_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0072_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0073_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0074_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0075_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0076_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0077_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0078_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0079_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_007_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0080_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0081_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0082_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0083_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0084_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0085_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0086_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0087_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0088_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0089_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_008_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_0090_optimized.png" />
+    <Resource Include="Assets\Image\InstallingCP_frames\installingcp_009_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0010_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0011_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0012_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0013_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0014_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0015_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0016_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0017_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0018_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0019_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_001_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0020_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0021_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0022_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0023_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0024_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0025_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0026_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0027_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0028_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0029_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_002_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0030_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0031_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0032_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0033_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0034_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0035_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0036_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0037_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0038_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0039_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_003_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0040_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0041_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0042_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0043_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0044_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0045_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0046_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0047_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0048_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0049_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_004_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0050_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0051_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0052_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0053_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0054_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0055_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0056_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0057_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0058_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0059_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_005_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0060_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0061_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0062_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0063_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0064_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0065_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0066_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0067_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0068_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0069_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_006_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0070_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0071_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0072_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0073_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0074_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0075_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0076_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0077_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0078_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0079_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_007_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0080_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0081_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0082_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0083_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0084_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0085_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0086_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0087_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0088_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0089_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_008_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0090_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0091_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0092_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0093_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0094_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0095_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0096_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0097_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0098_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0099_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_009_optimized.png" />
+    <Resource Include="Assets\Image\Installingst_frames\installingst_0100_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_000_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0010_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0011_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0012_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0013_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0014_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0015_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0016_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0017_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0018_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0019_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_001_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0020_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0021_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0022_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0023_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0024_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0025_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0026_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0027_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0028_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0029_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_002_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0030_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0031_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0032_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0033_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0034_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0035_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0036_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0037_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0038_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0039_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_003_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0040_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0041_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0042_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0043_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0044_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0045_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0046_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0047_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0048_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0049_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_004_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0050_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0051_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0052_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0053_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0054_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0055_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0056_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_0057_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_005_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_006_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_007_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_008_optimized.png" />
+    <Resource Include="Assets\Image\TitleAnimation_frames\titleanimation_009_optimized.png" />
+    <Resource Include="Assets\Image\AudioOff.png" />
+    <Resource Include="Assets\Image\AudioOn.png" />
+    <None Include="Assets\Image\Background.gif" />
+    <Resource Include="Assets\Image\Background.png" />
+    <None Include="Assets\Image\Background.webm" />
+    <None Include="Assets\Image\Background.wmv" />
+    <None Include="Assets\Image\Background1.gif" />
+    <None Include="Assets\Image\Background1.wmv" />
+    <Resource Include="Assets\Image\Boxlog.png" />
+    <Resource Include="Assets\Image\ButtonInstall.png" />
+    <Resource Include="Assets\Image\ButtonInstallH.png" />
+    <Resource Include="Assets\Image\ButtonShortcutOff.png" />
+    <Resource Include="Assets\Image\ButtonShortcutOn.png" />
+    <Resource Include="Assets\Image\CloseButton.png" />
+    <Resource Include="Assets\Image\CloseButtonHovered.png" />
+    <Resource Include="Assets\Image\DirectoryBox.png" />
+    <None Include="Assets\Image\DirectoryBox1.png" />
+    <Resource Include="Assets\Image\Logo.png" />
+    <Resource Include="Assets\Image\SelectFolder.png" />
+    <Resource Include="Assets\Image\SelectFolderHovered.png" />
+    <None Include="Assets\Image\Title.png" />
+    <None Include="Assets\Image\Background.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Costura64\bass.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Costura32\bass.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Costura32\7z.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Costura64\7z.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_001.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0010.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0011.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0012.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0013.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0014.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0015.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0016.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0017.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0018.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0019.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_002.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0020.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0021.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0022.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0023.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0024.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0025.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0026.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0027.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0028.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0029.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_003.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0030.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0031.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0032.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0033.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0034.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0035.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0036.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0037.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0038.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0039.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_004.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0040.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0041.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0042.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0043.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0044.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0045.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0046.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0047.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0048.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0049.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_005.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0050.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0051.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0052.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0053.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0054.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0055.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0056.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0057.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0058.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0059.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_006.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_0060.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_007.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_008.png" />
+    <Resource Include="Assets\Image\DirectoryBox_frames\DirectoryBox_009.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.6.8.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.8.0\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\CommunityToolkit.Mvvm.8.2.2\build\netstandard2.0\CommunityToolkit.Mvvm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CommunityToolkit.Mvvm.8.2.2\build\netstandard2.0\CommunityToolkit.Mvvm.targets'))" />
+  </Target>
+  <Import Project="..\packages\Fody.6.8.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.8.0\build\Fody.targets')" />
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Import Project="..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" />
+  <Import Project="..\packages\CommunityToolkit.Mvvm.8.2.2\build\netstandard2.0\CommunityToolkit.Mvvm.targets" Condition="Exists('..\packages\CommunityToolkit.Mvvm.8.2.2\build\netstandard2.0\CommunityToolkit.Mvvm.targets')" />
+</Project>

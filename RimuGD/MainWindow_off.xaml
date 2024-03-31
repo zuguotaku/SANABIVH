@@ -1,0 +1,222 @@
+﻿<Window x:Class="RimuGD.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RimuGD"
+        xmlns:mvvm="clr-namespace:AowVN.MVVM;assembly=AowVN.MVVM" 
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Title="SANABI Việt Hóa" Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        ResizeMode="CanResize" FontStretch="Normal">
+
+    <Window.Resources>
+        <Storyboard x:Key="CloseStoryboard" Completed="Storyboard_Completed">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.0" Duration="0:0:0.5" AutoReverse="False"/>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard x:Name="LoadStoryboard">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.6" AutoReverse="False"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <DataTrigger Binding="{Binding Exiting}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <StopStoryboard BeginStoryboardName="LoadStoryboard"/>
+                        <BeginStoryboard Storyboard="{StaticResource CloseStoryboard}"/>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
+
+    <Grid>
+        <Canvas Margin="-18,-27,-18,-27">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Assets/Image/Background.png"/>
+            </Canvas.Background>
+            <ToggleButton Width="56" Height="35" IsChecked="{Binding PlayAudio}" Cursor="Hand" HorizontalAlignment="Left" Canvas.Left="28" Canvas.Top="37" VerticalAlignment="Top">
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid>
+                            <Image x:Name="Off" Source="/Assets/Image/AudioOff.png"/>
+                            <Image x:Name="On" Source="/Assets/Image/AudioOn.png" Visibility="Hidden"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Off" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="On" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="Off" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="On" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+            <local:ImageButton Command="{Binding ExitCommand}" Width="80" Height="80" NormalImage="Assets/Image/CloseButton.png" HoveredImage="/Assets/Image/CloseButtonHovered.png" IsEnabled="{Binding Enable}" Cursor="Hand" HorizontalAlignment="Right" Canvas.Left="1218" Canvas.Top="27" VerticalAlignment="Top"/>
+            <Label Foreground="HotPink" FontSize="22" FontWeight="Bold" Content="Audio ♪" HorizontalAlignment="Left" Canvas.Left="90" Canvas.Top="35" VerticalAlignment="Center"/>
+            <Label FontSize="24" Foreground="White" FontFamily="/Assets/Fonts/#UVN Thay Giao Nang" Content="{Binding PatchVersion}" HorizontalAlignment="Left" Canvas.Left="1181" Canvas.Top="695" VerticalAlignment="Center" Width="161" Height="41"/>
+            <Grid Width="626" HorizontalAlignment="Left" Canvas.Left="345" Canvas.Top="135" VerticalAlignment="Top">
+                <Image Source="{Binding SourceTitle}" HorizontalAlignment="Center" VerticalAlignment="Top" Height="{Binding ZoomTitleH}" Width="{Binding ZoomTitleW}" Margin="0,-71,0,0">
+                    <Image.RenderTransform>
+                        <TranslateTransform/>
+                    </Image.RenderTransform>
+                </Image>
+                <Image Source="/Assets/Image/Logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="66" Width="319" Margin="354,164,0,0"/>
+
+            </Grid>
+            <Label Foreground="{Binding TextLogColor}" FontFamily="/Assets/Fonts/#UVN Chim Bien" FontSize="24" HorizontalAlignment="Left" Canvas.Left="571" Canvas.Top="378" VerticalAlignment="Top">
+                <Label.Effect>
+                    <DropShadowEffect Color="HotPink" BlurRadius="5" ShadowDepth="3"/>
+                </Label.Effect>
+                <Label.Style>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Content" Value="{Binding TextLog}"/>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <TextBox Text="{Binding FileName}" IsReadOnly="True" FontWeight="Bold" IsHitTestVisible="{Binding TextBrowse}"  FontSize="24" VerticalContentAlignment="Center" BorderBrush="Transparent" Foreground="Cyan" Padding="10,0,10,0" FontFamily="/Assets/Fonts/#UVN Chim Bien" TextAlignment="Left" Height="54" Width="244" HorizontalAlignment="Left" Canvas.Left="536" Canvas.Top="430" VerticalAlignment="Top">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="{Binding SourceDirectoryBox}"/>
+                </TextBox.Background>
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Button Content="Chọn đường dẫn" Width="244" Height="54"  Cursor="Hand" Command="{Binding GetDirectoryCommand}" Foreground="Cyan" FontFamily="/Assets/Fonts/#UVN Bach Dang" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Canvas.Left="536" Canvas.Top="506">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding PatchDirectory}" Value="">
+                                <Setter Property="IsEnabled" Value="True"/>
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}" Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="16,-81,18,75"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <local:ImageButton Command="{Binding GetDirectoryCommand}" NormalImage="/Assets/Image/SelectFolder.png" HoveredImage="/Assets/Image/SelectFolderHovered.png" IsEnabled="{Binding Enable}" Cursor="Hand" Height="78" Width="77" HorizontalAlignment="Left" Canvas.Left="457" Canvas.Top="426" VerticalAlignment="Center"/>
+            <local:ImageButton Command="{Binding InstallPatchCommand}" NormalImage="{Binding SourceButton}" HoveredImage="{Binding SourceButtonH}" IsEnabled="{Binding PatchButtonEnabled}" Cursor="Hand" Height="262" Canvas.Left="519" Canvas.Top="465" Width="262"/>
+            <Image Height="260" Width="260" Source="{Binding SourceInstallingst}" HorizontalAlignment="Left" Canvas.Left="520" Canvas.Top="465" VerticalAlignment="Top">
+                <Image.RenderTransformOrigin>0.5, 0.5</Image.RenderTransformOrigin>
+                <Image.RenderTransform>
+                    <RotateTransform Angle="0" />
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="RenderTransform.Angle"
+                                    To="-720"
+                                    Duration="0:0:1" 
+                                    RepeatBehavior="Forever"
+                                />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+            <TextBlock TextWrapping="Wrap" Text="{Binding StrprogressVariable}" IsHitTestVisible="False" Foreground="Cyan" FontSize="40" FontFamily="/Assets/Fonts/#UVN Chim Bien" TextAlignment="Center" HorizontalAlignment="Left" Canvas.Left="575" Canvas.Top="564" VerticalAlignment="Center" Width="149"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding SourceCredit}" FontSize="20" FontFamily="/Assets/Fonts/#UVN Chim Bien" Foreground="LightCyan" HorizontalAlignment="Left" Canvas.Left="439" Canvas.Top="321" VerticalAlignment="Top">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="DarkRed" BlurRadius="1" ShadowDepth="1"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Image Source="/Assets/Image/Boxlog.png" Height="31" Width="574" HorizontalAlignment="Left" Canvas.Left="362" Canvas.Top="701" VerticalAlignment="Center"/>
+            <Grid Width="{Binding Parent.ActualWidth, RelativeSource={RelativeSource Mode=Self}}" Height="35" HorizontalAlignment="Left" Canvas.Top="702" VerticalAlignment="Center" Canvas.Left="-11">
+                <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontFamily="/Assets/Fonts/#UVN Ai Cap Nang" FontSize="20">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Red" BlurRadius="1" ShadowDepth="0"/>
+                    </TextBlock.Effect>
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Text" Value="{Binding ExtractLog}"/>
+                            <Setter Property="Foreground" Value="Yellow"/>
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding ExtractLog}" Value=""/>
+                                        <Condition Binding="{Binding ValidDirectory}" Value="{x:Null}"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Text" Value=""/>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding ExtractLog}" Value=""/>
+                                        <Condition Binding="{Binding ValidDirectory}" Value="True"/>
+                                        <Condition Binding="{Binding StatusVersion}" Value="True"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Text" Value="Chuẩn bị hoàn tất!"/>
+                                    <Setter Property="Foreground" Value="Lime"/>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding ExtractLog}" Value=""/>
+                                        <Condition Binding="{Binding ValidDirectory}" Value="False"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Text" Value="{Binding StringFormat=Chưa đúng đường dẫn tới \{0\}, Source={x:Static mvvm:ConstantStrings.GameExecutable}}"/>
+                                    <Setter Property="Foreground" Value="OrangeRed"/>
+                                </MultiDataTrigger>
+                                <!--<DataTrigger Binding="{Binding ValidDirectory}" Value="{x:Null}">
+                                        <Setter Property="Text" Value=""/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ValidDirectory}" Value="True">
+                                        <Setter Property="Text" Value="Đường dẫn hợp lệ"/>
+                                        <Setter Property="Foreground" Value="Green"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ValidDirectory}" Value="False">
+                                        <Setter Property="Text" Value="{Binding Source={x:Static mvvm:ConstantStrings.GameExecutable}, StringFormat='Chưa đúng đường dẫn tới {0}.exe'}"/>
+                                        <Setter Property="Foreground" Value="OrangeRed"/>
+                                    </DataTrigger>-->
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <ToggleButton Visibility="Visible" Width="56" Height="35" IsChecked="{Binding Shortcut}" Cursor="Hand" HorizontalAlignment="Left" Canvas.Left="28" Canvas.Top="693" VerticalAlignment="Top">
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid>
+                            <Image x:Name="Off" Source="/Assets/Image/ButtonShortcutOff.png"/>
+                            <Image x:Name="On" Source="/Assets/Image/ButtonShortcutOn.png" Visibility="Hidden"/>
+                            <local:ImageButton Content="ImageButton" HorizontalAlignment="Left" Height="0" Margin="59,-13,0,0" VerticalAlignment="Top" Width="0"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Off" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="On" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="Off" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="On" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+            <Label Visibility="Visible" Content="Tạo Shortcut" FontFamily="/Assets/Fonts/#UVN Thay Giao Nang" Height="34" Width="151" Foreground="White" FontSize="16" HorizontalAlignment="Left" Canvas.Left="78" Canvas.Top="693" VerticalAlignment="Center"/>
+
+        </Canvas>
+
+    </Grid>
+</Window>
